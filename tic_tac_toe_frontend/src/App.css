@@ -1,104 +1,240 @@
-/* CSS Variables for Theme Management */
+/* Ocean Professional Theme */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --primary: #2563EB;
+  --secondary: #F59E0B;
+  --success: #F59E0B;
+  --error: #EF4444;
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6B7280;
+  --ring: rgba(37, 99, 235, 0.35);
+  --shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
+  --radius: 16px;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
 }
 
-.App {
+.ocean-app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at -10% -10%, rgba(37,99,235,0.12), transparent 60%),
+    radial-gradient(800px 400px at 110% 10%, rgba(245,158,11,0.10), transparent 50%),
+    var(--bg);
+}
+
+.ocean-container {
+  width: 100%;
+  max-width: 920px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  border: 1px solid rgba(17, 24, 39, 0.06);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.ocean-container:hover {
+  box-shadow: 0 16px 40px rgba(17, 24, 39, 0.10);
+}
+
+.ocean-header {
   text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 18px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ocean-title {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, var(--primary), #1e40af);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+.ocean-subtitle {
+  margin: 6px 0 0 0;
+  color: var(--muted);
   font-size: 14px;
+}
+
+.ocean-controls {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  margin-top: 6px;
+}
+
+.mode-toggle {
+  background: linear-gradient(180deg, rgba(17,24,39,0.04), rgba(17,24,39,0.02));
+  border: 1px solid rgba(17,24,39,0.08);
+  padding: 6px;
+  border-radius: 12px;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.mode-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
   font-weight: 600;
+  color: var(--text);
+  background: transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease;
 }
 
-.theme-toggle:hover {
+.mode-btn.active {
+  background: radial-gradient(160% 100% at 50% 0%, rgba(37,99,235,0.12), rgba(245,158,11,0.10));
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px rgba(37,99,235,0.25);
+}
+
+.mode-btn:hover {
+  transform: translateY(-1px);
+}
+
+.status {
+  font-size: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(17,24,39,0.035), rgba(17,24,39,0.02));
+  border: 1px solid rgba(17,24,39,0.06);
+  color: var(--text);
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+}
+
+.status.turn {
+  box-shadow: inset 0 0 0 1px rgba(37,99,235,0.18);
+}
+
+.status.win {
+  box-shadow: inset 0 0 0 1px rgba(245,158,11,0.28);
+}
+
+.status.draw {
+  box-shadow: inset 0 0 0 1px rgba(17,24,39,0.12);
+}
+
+.ocean-main {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  margin-top: 8px;
+}
+
+.board-surface {
+  background: linear-gradient(180deg, rgba(255,255,255,1), rgba(249,250,251,0.8));
+  border: 1px solid rgba(17,24,39,0.06);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.ttt-board {
+  width: min(88vw, 420px);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.ttt-square {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(180deg, #ffffff, #f9fafb);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 14px;
+  font-size: clamp(38px, 9vw, 56px);
+  font-weight: 800;
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(17, 24, 39, 0.06);
+  transition: transform 140ms ease, box-shadow 140ms ease, background 240ms ease;
+  user-select: none;
+}
+
+.ttt-square:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+  box-shadow: 0 10px 18px rgba(17, 24, 39, 0.10);
 }
 
-.theme-toggle:active {
+.ttt-square:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 12px rgba(17, 24, 39, 0.08);
+}
+
+.ttt-square.highlight {
+  background: radial-gradient(140% 100% at 50% 10%, rgba(245,158,11,0.18), #fff);
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.28);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.restart-btn {
+  background: linear-gradient(180deg, var(--primary), #1e40af);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.25);
+  transition: transform 160ms ease, box-shadow 200ms ease, filter 160ms ease;
+}
+
+.restart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.35);
+  filter: brightness(1.03);
+}
+
+.restart-btn:active {
   transform: translateY(0);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ocean-footer {
+  margin-top: 8px;
+  text-align: center;
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+.legend {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 520px) {
+  .ocean-container {
+    padding: 18px;
+    border-radius: 14px;
+  }
+  .ocean-title {
+    font-size: 24px;
+  }
+  .mode-btn {
+    padding: 8px 12px;
   }
 }
